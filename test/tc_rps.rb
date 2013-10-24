@@ -10,3 +10,14 @@ class RPSTest < Test::Unit::TestCase
       run RockPaperScissors::App.new
     end.to_app
   end
+
+  def test_index
+    get "/"
+    assert last_response.ok?
+  end
+
+  def test_body
+    get "/"
+    assert last_response.body.include? ("Bienvenido a Piedra Papel y Tijera")
+  end
+  
