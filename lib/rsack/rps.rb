@@ -1,4 +1,3 @@
-#encoding: utf-8
 require 'rack/request'
 require 'rack/response'
 require 'haml'
@@ -10,6 +9,7 @@ module RockPaperScissors
       @content_type = :html
       @defeat = {'Piedra' => 'Tijera', 'Papel' => 'Piedra', 'Tijera' => 'Papel'}
       @throws = @defeat.keys
+      @jugadas = {'Empate' => 0, 'Derrota' => 0, 'Victoria' => 0}
     end
 
     def call(env)
@@ -20,14 +20,20 @@ module RockPaperScissors
       answer = if !@throws.include?(player_throw)
           "Elijae una opcion:"
         elsif player_throw == computer_throw
+          @jugadas['Empate'] = @jugadas['Empate'] + 1
           "¡Empate!"
         elsif computer_throw == @defeat[player_throw]
+          @jugadas['Empate'] = @jugadas['Empate'] + 1
           "¡Bien! #{player_throw} gana a #{computer_throw}"
         else
+          @jugadas['Empate'] = @jugadas['Empate'] + 1
           "Oohhh! #{computer_throw} gana a #{player_throw}. ¡Intentalo de nuevo!"
         end
-      engine = Haml::Engine.new File.open("views/index.haml").read
+      engine = Haml::Engine.new File.open("views/template.haml").read
       res = Rack::Response.new
+      res.set_cookie("jugadas-Victoria", {:value => @jugadas['Victoria'], :path => "/", :domain => "", :expires => Time.now+24*60*60})
+      res.set_cookie("jugadas-Empate", {:value => @jugadas['Empate'], :path => "/", :domain => "", :expires => Time.now+24*60*60})
+      res.set_cookie("jugadas-Derrota", {:value => @jugadas['Derrota'], :path => "/", :domain => "", :expires => Time.now+24*60*60})
       res.write engine.render(
         {},
         :answer => answer,
