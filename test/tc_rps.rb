@@ -25,3 +25,19 @@ class RPSTest < Test::Unit::TestCase
     get "/"
     assert_match "<title> Piedra Papel Tijera </title>", last_response.body
   end
+
+  def test_rock
+    get "/?choice=Piedra"
+    assert last_response.ok?
+  end
+  
+  def test_paper
+    get "/?choice=Papel"
+    assert last_response.ok?
+  end
+  
+  def test_scissors
+    get "/?choice=Tijera"
+    assert last_response.ok?
+  end
+end
