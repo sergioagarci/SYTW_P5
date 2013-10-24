@@ -28,6 +28,9 @@ module RockPaperScissors
         end
       engine = Haml::Engine.new File.open("views/index.haml").read
       res = Rack::Response.new
+      res.set_cookie("tiradas-Victorias", {:value => @tiradas['Victorias'], :path => "/", :domain => "", :expires => Time.now+24*60*60})
+      res.set_cookie("tiradas-Empates", {:value => @tiradas['Empates'], :path => "/", :domain => "", :expires => Time.now+24*60*60})
+      res.set_cookie("tiradas-Derrotas", {:value => @tiradas['Derrotas'], :path => "/", :domain => "", :expires => Time.now+24*60*60})
       res.write engine.render(
         {},
         :answer => answer,
