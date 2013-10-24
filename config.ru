@@ -1,4 +1,4 @@
-require './lib/rps.rb'
+require './lib/rasck/rps.rb'
 builder = Rack::Builder.new do
       use Rack::Static, :urls => ['/public']
       use Rack::ShowExceptions
