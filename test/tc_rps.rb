@@ -20,4 +20,8 @@ class RPSTest < Test::Unit::TestCase
     get "/"
     assert last_response.body.include? ("Bienvenido a Piedra Papel y Tijera")
   end
-  
+ 
+   def test_title
+    get "/"
+    assert_match "<title> Piedra Papel Tijera </title>", last_response.body
+  end
