@@ -10,6 +10,7 @@ module RockPaperScissors
       @content_type = :html
       @defeat = {'Piedra' => 'Tijera', 'Papel' => 'Piedra', 'Tijera' => 'Papel'}
       @throws = @defeat.keys
+      @jugadas = {'Empate' => 0, 'Derrota' => 0, 'Victoria' => 0}
     end
 
     def call(env)
