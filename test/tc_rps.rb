@@ -23,7 +23,7 @@ class RPSTest < Test::Unit::TestCase
  
    def test_title
     get "/"
-    assert_match "<title> Piedra Papel Tijera </title>", last_response.body
+    assert_match "Piedra Papel Tijera", last_response.body
   end
 
   def test_rock
