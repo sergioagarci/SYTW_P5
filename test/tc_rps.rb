@@ -27,17 +27,17 @@ class RPSTest < Test::Unit::TestCase
   end
 
   def test_rock
-    get "/?choice=Piedra"
+    get "/?choice=piedra"
     assert last_response.ok?
   end
   
   def test_paper
-    get "/?choice=Papel"
+    get "/?choice=papel"
     assert last_response.ok?
   end
   
   def test_scissors
-    get "/?choice=Tijera"
+    get "/?choice=tijera"
     assert last_response.ok?
   end
 end

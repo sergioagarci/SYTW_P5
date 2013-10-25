@@ -1,4 +1,4 @@
-require './lib/rasck/rps.rb'
+require './lib/rsack/rps.rb'
 builder = Rack::Builder.new do
       use Rack::Static, :urls => ['/public']
       use Rack::ShowExceptions
@@ -6,6 +6,6 @@ builder = Rack::Builder.new do
       run RockPaperScissors::App.new
 end
 
-Rack::Handler::Thin.run builder, :Port => 8080
+Rack::Handler::WEBrick.run builder, :Port => 8080
 
 
