@@ -2,6 +2,8 @@ require "test/unit"
 require "rack/test"
 require "rsack"
 
+module RockPaperScissors
+
 class RPSTest < Test::Unit::TestCase
   include Rack::Test::Methods
 
@@ -40,4 +42,5 @@ class RPSTest < Test::Unit::TestCase
     get "/?choice=tijera"
     assert last_response.ok?
   end
+end
 end

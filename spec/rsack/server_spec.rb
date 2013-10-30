@@ -13,7 +13,7 @@ describe RockPaperScissors::App do
     end
     it "Debería mostrar Bienvenido a Piedra Papel y Tijera" do
       response = server.get('/')
-      response.body == 'Bienvenido a Piedra Papel y Tijera'
+      response.body.should == 'Hola a Piedra Papel y Tijera'
     end
   end
 end
